@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens.
+  Values are stored as "R G B" triplets (no commas) so Tailwind's
+  `rgb(var(--x) / <alpha-value>)` pattern can apply opacity.
+
+  Dark ("Tactical") is the primary designed mode: a deep cyber HUD.
+  Light ("Daylight Ops") keeps the same structure and accent hues,
+  desaturated and darkened for AAA contrast on a light field, for
+  users who need or prefer it.
+*/
+:root {
+  --color-background: 248 250 252;      /* slate-50 */
+  --color-background-alt: 241 245 249;  /* slate-100 */
+  --color-surface: 255 255 255;
+  --color-border: 8 145 178;            /* cyan-600, used with /opacity */
+  --color-heading: 8 20 45;             /* deep navy */
+  --color-body: 15 23 42;               /* slate-900 */
+  --color-muted: 71 85 105;             /* slate-500 */
+  --color-cyan: 8 145 178;              /* cyan-600 */
+  --color-emerald: 5 150 105;           /* emerald-600 */
+  --color-violet: 109 40 217;           /* violet-700 */
+  --color-accent-foreground: 255 255 255;
+
+  --font-display: "Space Grotesk", var(--font-sans);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.dark {
+  --color-background: 5 7 14;           /* #05070E */
+  --color-background-alt: 8 12 22;      /* #080C16 */
+  --color-surface: 10 14 26;            /* panel, slightly lifted off bg */
+  --color-border: 0 240 255;            /* neon cyan, used with /opacity */
+  --color-heading: 224 253 255;         /* near-white cyan tint */
+  --color-body: 186 224 240;            /* light cyan-slate */
+  --color-muted: 100 132 150;           /* desaturated cyan-slate */
+  --color-cyan: 0 240 255;              /* neon cyan */
+  --color-emerald: 0 255 157;           /* tech emerald */
+  --color-violet: 139 92 246;           /* violet glow */
+  --color-accent-foreground: 5 7 14;
+}
+
+* {
+  border-color: rgb(var(--color-border) / 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-body));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: rgb(var(--color-cyan) / 0.3);
+  color: rgb(var(--color-heading));
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-cyan));
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Ambient HUD background: layered circuit grid + slow-drifting glow */
+/* ---------------------------------------------------------------- */
+
+.hud-field {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-color: rgb(var(--color-background));
+}
+
+.hud-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(var(--color-cyan) / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--color-cyan) / 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+}
+
+.hud-field::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgb(var(--color-cyan) / 0.14) 0%, transparent 60%);
+  animation: ambient-drift 14s ease-in-out infinite;
+}
+
+.hud-field-secondary {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+}
+
+.hud-field-secondary::before {
+  content: "";
+  position: absolute;
+  bottom: -25%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgb(var(--color-violet) / 0.12) 0%, transparent 65%);
+  animation: ambient-drift 18s ease-in-out infinite reverse;
+}
+
+/* ---------------------------------------------------------------- */
+/* Reusable HUD utilities                                            */
+/* ---------------------------------------------------------------- */
+
+/* Angled "cyber-cut" corner, used on panels for a HUD-plate look */
+.hud-clip {
+  clip-path: polygon(
+    0 10px, 10px 0,
+    calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 0 calc(100% - 10px)
+  );
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--color-cyan) / 0.08),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.group:hover .scanline::after {
+  opacity: 1;
+  animation: scan 1.8s linear infinite;
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 14px rgb(var(--color-cyan) / 0.55);
+}

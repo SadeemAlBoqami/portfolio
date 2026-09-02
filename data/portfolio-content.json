@@ -1,0 +1,140 @@
+{
+  "site": {
+    "title": "Sadeem AlBoqami — Computer Engineer",
+    "description": "Computer Engineer specializing in Edge AI, Robotics, AI Infrastructure & Data Center Operations."
+  },
+"hero": {
+    "name": "Sadeem AlBoqami",
+    "title": "Computer Engineer | AI Infrastructure | Edge AI",
+    "tagline": "Building low-latency inference pipelines, embedded robotics, and scalable AI infrastructure.",
+    "location": "Taif, Saudi Arabia",
+    "resumeUrl": "/cv/cv.pdf",
+    "badges": ["NVIDIA Jetson", "ROS 2", "PyTorch", "TensorRT", "Docker", "Kubernetes"],
+    "social": {
+      "github": "https://github.com/SadeemAlBoqami",
+      "linkedin": "https://linkedin.com/in/sadeem-alboqami",
+      "email": "mailto:salmrzoqe@gmail.com"
+    }
+  },
+  "systemStatus": {
+    "label": "SYSTEM STATUS",
+    "value": "ONLINE",
+    "detail": "ALL NODES ACTIVE"
+  },
+  "telemetry": [
+    { "label": "FOCUS DOMAINS", "value": "04" },
+    { "label": "CORE STACK", "value": "15+" },
+    { "label": "LAB DISTINCTION", "value": "100%" },
+    { "label": "SYSTEM UPTIME", "value": "99.9%" }
+  ],
+  "focusAreas": [
+    {
+      "id": "edge-ai",
+      "title": "Edge AI & MLOps",
+      "description": "Deploying optimized deep learning models locally on edge devices using TensorRT and PyTorch for real-time, low-latency inference pipelines."
+    },
+    {
+      "id": "datacenter",
+      "title": "AI Infrastructure & Operations",
+      "description": "GPU workload orchestration, containerized microservices (FastAPI, Docker, Kubernetes), and telemetry observability with Prometheus and Grafana."
+    },
+    {
+      "id": "embedded-iot",
+      "title": "Embedded Systems & IoT",
+      "description": "Hardware-software co-design interfacing microcontrollers, camera modules, and sensors with device-to-cloud telemetry pipelines."
+    },
+    {
+      "id": "robotics",
+      "title": "Robotics & Autonomous Systems",
+      "description": "Sensor fusion, motor control, and perception stacks using ROS 2, ARM, and ESP32 microcontrollers for autonomous mobile systems."
+    }
+  ],
+  "projects": [
+    {
+      "id": "precrash-ai",
+      "title": "PRECRASH AI: Road Safety & Traffic Diagnostic System",
+      "status": "Completed",
+      "problem": "Reactive collision systems respond too late in dense environments. Engineered an AI system integrating YOLOv8 and LSTM to predict collision hazards and traffic risks in real time.",
+      "tags": ["YOLOv8", "LSTM", "NVIDIA Jetson Orin Nano", "ROS 2", "TensorRT", "CARLA", "Python"],
+      "metrics": [
+        { "label": "Deployment", "value": "Jetson Edge" },
+        { "label": "Pipeline", "value": "Real-time sync" }
+      ],
+      "links": {
+        "github": "https://github.com/SadeemAlBoqami/Road-Safety-and-Traffic-Diagnostics-Assisted-by-AI-Phase2-Hardware-Core",
+        "demo": "https://youtu.be/T_bd7J-IUW0"
+      }
+    },
+    {
+      "id": "ai-inference-microservice",
+      "title": "Low-Latency AI Inference & Observability Service",
+      "status": "Completed",
+      "problem": "Deploying scalable deep learning inference microservices with containerization, low-latency API response, and telemetry monitoring pipelines.",
+      "tags": ["FastAPI", "Docker", "Kubernetes", "Prometheus", "Grafana", "Linux"],
+      "metrics": [
+        { "label": "Stack", "value": "GPU Orchestration" },
+        { "label": "Telemetry", "value": "Live Grafana" }
+      ],
+      "links": {
+        "github": "https://github.com/SadeemAlBoqami/AIDC-W1D5-llm-inference-service",
+        "demo": ""
+      }
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-01",
+      "role": "AI Data Center Operations Fellow",
+      "organization": "Saudi Digital Academy (SDA) × WeCloudData",
+      "period": "Aug 2026 — Present",
+      "location": "Riyadh, Saudi Arabia (Remote)",
+      "description": "Full-time intensive program on hyperscale AI infrastructure, high-performance computing (HPC) cluster operations, GPU workload orchestration, and containerized microservice architectures.",
+      "skills": ["Data Center Operations", "GPU Clusters", "Docker", "Kubernetes", "Linux", "FastAPI"]
+    },
+    {
+      "id": "exp-02",
+      "role": "Robotics & Embedded Systems Intern",
+      "organization": "Smart Methods (الأساليب الذكية)",
+      "period": "Summer 2025",
+      "location": "Saudi Arabia",
+      "description": "Full-stack robotics training and development covering embedded system interfacing, ROS middleware, motor driver HATs, sensor integration, and autonomous mobile robot kinematics.",
+      "skills": ["ROS 2", "Embedded Systems", "Hardware-Software Co-design", "Microcontrollers", "Python", "C++"]
+    }
+  ],
+  "skills": {
+    "Programming & Systems": ["Python", "C++", "SQL", "Linux / Ubuntu", "Bash"],
+    "Frameworks & Edge AI": ["PyTorch", "ROS 2", "NVIDIA TensorRT", "OpenCV", "YOLOv8", "FastAPI"],
+    "AI Infrastructure & DevOps": ["Docker", "Kubernetes", "Prometheus", "Grafana", "MLOps", "Git"],
+    "Hardware & Platforms": ["NVIDIA Jetson Orin Nano", "ESP32", "ARM Microcontrollers"]
+  },
+  "certifications": [
+    {
+      "id": "sda-weclouddata-datacenter",
+      "title": "AI Data Center Operations Program",
+      "issuer": "Saudi Digital Academy (SDA) & WeCloudData",
+      "date": "2026"
+    },
+    {
+      "id": "ibm-ai-accelerator",
+      "title": "AI Skills Accelerator (Advanced ML & MLOps)",
+      "issuer": "IBM & King Saud University",
+      "date": "2026"
+    },
+    {
+      "id": "nvidia-jetson-dli",
+      "title": "Getting Started with AI on Jetson Nano",
+      "issuer": "NVIDIA Deep Learning Institute",
+      "date": "2026"
+    },
+    {
+      "id": "smart-methods-robotics",
+      "title": "Full Stack Robotics Engineer",
+      "issuer": "Smart Methods",
+      "date": "2025"
+    }
+  ],
+  "footer": {
+    "copyright": "Sadeem AlBoqami",
+    "status": "Available for Opportunities"
+  }
+}

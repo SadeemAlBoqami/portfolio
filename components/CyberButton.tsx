@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { tapPress } from "@/lib/motion";
 
@@ -19,17 +19,18 @@ export function CyberButton({
   children: ReactNode;
   variant?: keyof typeof variants;
 }) {
+  const reducedMotion = useReducedMotion();
   return (
     <motion.a
       href={href}
-      whileTap={tapPress}
+      whileTap={reducedMotion ? undefined : tapPress}
       className={`group inline-flex items-center gap-1.5 border px-5 py-2.5 font-mono text-sm tracking-wide transition-colors duration-250 ${variants[variant]}`}
     >
-      <span className="text-cyan opacity-40 transition-all duration-250 group-hover:-translate-x-0.5 group-hover:opacity-100">
+      <span aria-hidden="true" className="text-cyan opacity-40 transition-all duration-250 group-hover:-translate-x-0.5 group-hover:opacity-100">
         [
       </span>
       <span>{children}</span>
-      <span className="text-cyan opacity-40 transition-all duration-250 group-hover:translate-x-0.5 group-hover:opacity-100">
+      <span aria-hidden="true" className="text-cyan opacity-40 transition-all duration-250 group-hover:translate-x-0.5 group-hover:opacity-100">
         ]
       </span>
     </motion.a>

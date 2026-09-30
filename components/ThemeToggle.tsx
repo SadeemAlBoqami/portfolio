@@ -2,39 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { tapPress } from "@/lib/motion";
+import { usePortfolio } from "./LanguageProvider";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
+  const { content } = usePortfolio();
+  const reducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-
-  if (!mounted) {
-    return <div className="h-9 w-9" aria-hidden="true" />;
-  }
-
+  if (!mounted) return <div className="control-button" aria-hidden="true" />;
   const isDark = resolvedTheme === "dark";
-
+  const label = isDark ? content.ui.lightTheme : content.ui.darkTheme;
   return (
-    <motion.button
-      type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      whileTap={tapPress}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex h-9 w-9 items-center justify-center overflow-hidden border border-cyan/25 text-body transition-colors duration-250 hover:border-cyan/70 hover:text-cyan"
-    >
+    <motion.button type="button" onClick={() => setTheme(isDark ? "light" : "dark")}
+      whileTap={reducedMotion ? undefined : tapPress} aria-label={label} title={label} className="control-button">
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={isDark ? "sun" : "moon"}
-          initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
+        <motion.span key={isDark ? "sun" : "moon"}
+          initial={reducedMotion ? false : { rotate: -90, scale: 0.5, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
-          exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className="flex items-center justify-center"
-        >
-          {isDark ? <Sun size={16} strokeWidth={1.75} /> : <Moon size={16} strokeWidth={1.75} />}
+          exit={reducedMotion ? undefined : { rotate: 90, scale: 0.5, opacity: 0 }}
+          transition={{ duration: reducedMotion ? 0 : 0.2 }} className="flex items-center justify-center">
+          {isDark ? <Sun size={17} strokeWidth={1.75} /> : <Moon size={17} strokeWidth={1.75} />}
         </motion.span>
       </AnimatePresence>
     </motion.button>

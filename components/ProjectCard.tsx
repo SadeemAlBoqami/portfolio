@@ -1,70 +1,28 @@
-"use client";
-
-import { cardVariants } from "@/lib/motion";
-import type { Project } from "@/lib/content";
-import { GlowCard } from "./GlowCard";
+import Link from "next/link";
+import { ArrowUpRight, Github } from "lucide-react";
+import type { PortfolioContent, Project } from "@/lib/content-types";
 import { Badge } from "./Badge";
-import { CyberButton } from "./CyberButton";
+import { ProjectCover } from "./ProjectCover";
+import { ProjectMetrics } from "./ProjectMetrics";
 
-const statusTone: Record<string, "cyan" | "emerald" | "violet"> = {
-  Completed: "emerald",
-  "In Progress": "cyan",
-};
-
-export function ProjectCard({ project }: { project: Project }) {
-  const tone = statusTone[project.status] ?? "violet";
-
-  return (
-    <GlowCard as="article" variants={cardVariants} whileHover={{ y: -4 }} className="flex flex-col">
-      {/* Terminal-style title bar */}
-      <div className="flex items-center justify-between border-b border-cyan/15 bg-background-alt px-4 py-2.5">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-cyan/70" />
-          <span className="h-2 w-2 rounded-full bg-emerald/70" />
-          <span className="h-2 w-2 rounded-full bg-violet/70" />
-          <span className="ml-2 font-mono text-[0.65rem] text-muted">~/projects/{project.id}.log</span>
-        </div>
-        <Badge tone={tone}>{project.status}</Badge>
+export function ProjectCard({ project, ui }: { project: Project; ui: PortfolioContent["ui"] }) {
+  return <article className="panel flex min-w-0 flex-col overflow-hidden transition-[border-color,box-shadow] hover:border-cyan/50 hover:shadow-glow-cyan">
+    <ProjectCover image={project.media?.cover} compact />
+    <div className="flex flex-1 flex-col p-5 sm:p-7">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        {project.secondaryName && <bdi className="font-mono text-xs text-muted">{project.secondaryName}</bdi>}
+        <span className="ms-auto rounded-full border border-emerald/20 bg-emerald/5 px-2.5 py-1 text-xs text-emerald">{ui.status[project.status]}</span>
       </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-xl text-heading">{project.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{project.problem}</p>
-
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li key={tag}>
-              <Badge tone="cyan">{tag}</Badge>
-            </li>
-          ))}
-        </ul>
-
-        {project.metrics.length > 0 && (
-          <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-cyan/10 pt-4 sm:grid-cols-3">
-            {project.metrics.map((metric) => (
-              <div key={metric.label}>
-                <dt className="font-mono text-[0.6rem] tracking-wider text-muted">
-                  {metric.label.toUpperCase()}
-                </dt>
-                <dd className="text-glow-cyan font-mono text-sm text-cyan">{metric.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-
-        <div className="mt-auto flex flex-wrap items-center gap-3 pt-5">
-          {project.links.github && (
-            <CyberButton href={project.links.github} variant="ghost">
-              VIEW CODE
-            </CyberButton>
-          )}
-          {project.links.demo && (
-            <CyberButton href={project.links.demo} variant="primary">
-              LIVE DEMO
-            </CyberButton>
-          )}
-        </div>
+      <h3 className="font-display text-xl font-semibold leading-snug tracking-tight text-heading sm:text-2xl">
+        <Link href={`/projects/${project.slug}/`} className="hover:text-cyan">{project.title}</Link>
+      </h3>
+      <p className="mt-3 text-sm leading-relaxed text-body">{project.summary}</p>
+      <ul className="mt-5 flex flex-wrap gap-2">{project.tags.slice(0, 5).map((tag) => <li key={tag}><Badge><bdi>{tag}</bdi></Badge></li>)}</ul>
+      {!!project.cardMetrics?.length && <div className="mt-6 border-t border-cyan/15 pt-5"><ProjectMetrics metrics={project.cardMetrics} /></div>}
+      <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
+        <Link href={`/projects/${project.slug}/`} className="inline-flex min-h-11 items-center gap-2 rounded border border-cyan/40 bg-cyan/5 px-4 py-2 text-sm font-medium text-cyan transition-colors hover:bg-cyan/15">{ui.viewProject}<ArrowUpRight size={16} aria-hidden="true" className="rtl:-rotate-90" /></Link>
+        {project.links?.github && <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 px-2 text-sm text-muted hover:text-heading"><Github size={16} aria-hidden="true" />{ui.viewCode}</a>}
       </div>
-    </GlowCard>
-  );
+    </div>
+  </article>;
 }

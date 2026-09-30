@@ -8,9 +8,7 @@
   `rgb(var(--x) / <alpha-value>)` pattern can apply opacity.
 
   Dark ("Tactical") is the primary designed mode: a deep cyber HUD.
-  Light ("Daylight Ops") keeps the same structure and accent hues,
-  desaturated and darkened for AAA contrast on a light field, for
-  users who need or prefer it.
+  Light mode retains the same structure with darker accent colors.
 */
 :root {
   --color-background: 248 250 252;      /* slate-50 */
@@ -20,14 +18,14 @@
   --color-heading: 8 20 45;             /* deep navy */
   --color-body: 15 23 42;               /* slate-900 */
   --color-muted: 71 85 105;             /* slate-500 */
-  --color-cyan: 8 145 178;              /* cyan-600 */
-  --color-emerald: 5 150 105;           /* emerald-600 */
+  --color-cyan: 14 116 144;             /* cyan-700 */
+  --color-emerald: 4 120 87;            /* emerald-700 */
   --color-violet: 109 40 217;           /* violet-700 */
   --color-accent-foreground: 255 255 255;
 
-  --font-display: "Space Grotesk", var(--font-sans);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: var(--font-space), sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 .dark {
@@ -37,10 +35,10 @@
   --color-border: 0 240 255;            /* neon cyan, used with /opacity */
   --color-heading: 224 253 255;         /* near-white cyan tint */
   --color-body: 186 224 240;            /* light cyan-slate */
-  --color-muted: 100 132 150;           /* desaturated cyan-slate */
+  --color-muted: 139 163 178;           /* readable secondary text */
   --color-cyan: 0 240 255;              /* neon cyan */
   --color-emerald: 0 255 157;           /* tech emerald */
-  --color-violet: 139 92 246;           /* violet glow */
+  --color-violet: 167 139 250;          /* violet-400 */
   --color-accent-foreground: 5 7 14;
 }
 
@@ -50,6 +48,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -65,6 +64,7 @@ html {
 }
 
 body {
+  isolation: isolate;
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-body));
   font-family: var(--font-sans);
@@ -91,6 +91,7 @@ body {
   inset: 0;
   z-index: -10;
   pointer-events: none;
+  overflow: hidden;
   background-color: rgb(var(--color-background));
 }
 
@@ -121,6 +122,7 @@ body {
   inset: 0;
   z-index: -10;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hud-field-secondary::before {
@@ -179,3 +181,45 @@ body {
 .text-glow-cyan {
   text-shadow: 0 0 14px rgb(var(--color-cyan) / 0.55);
 }
+
+/* Shared layout keeps section widths and controls consistent in both languages. */
+@layer components {
+  .section-shell { @apply mx-auto w-full max-w-content px-4 py-14 sm:px-6 sm:py-16; }
+  .panel { @apply min-w-0 rounded-xl border border-cyan/20 bg-surface/80; }
+  .control-button { @apply flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded border border-cyan/25 text-body transition-colors duration-250 hover:border-cyan/70 hover:bg-cyan/5 hover:text-cyan; }
+  .nav-link { @apply text-muted transition-colors hover:text-cyan; }
+  .detail-heading { @apply mb-5 font-display text-2xl font-semibold text-heading; }
+}
+
+main:focus { outline: none; }
+section[id] { scroll-margin-top: 1rem; }
+h1, h2, h3, h4, p, li, dd, dt { overflow-wrap: break-word; }
+.skip-link { position: absolute; inset-inline-start: 1rem; top: -6rem; padding: .75rem 1rem; background: rgb(var(--color-surface)); color: rgb(var(--color-heading)); z-index: 60; }
+.skip-link:focus { top: .5rem; }
+.hero-name { text-shadow: 0 0 28px rgb(var(--color-cyan) / .12); }
+.glow-card { background-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, -20%), rgb(var(--color-cyan) / .07), transparent 70%); }
+.cursor-glow { background: radial-gradient(450px circle at var(--cursor-x, -1000px) var(--cursor-y, -1000px), rgb(var(--color-cyan) / .045), transparent 75%); }
+.technical-cover {
+  display: flex; align-items: center; gap: .5rem; padding-inline: 1.75rem;
+  background-color: rgb(var(--color-background-alt));
+  background-image: linear-gradient(110deg, rgb(var(--color-cyan) / .05), transparent 55%, rgb(var(--color-violet) / .08)), linear-gradient(rgb(var(--color-cyan) / .06) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--color-cyan) / .06) 1px, transparent 1px);
+  background-size: auto, 22px 22px, 22px 22px;
+  border-bottom: 1px solid rgb(var(--color-cyan) / .12);
+}
+.technical-cover span { height: 5px; width: 5px; border-radius: 50%; background: rgb(var(--color-cyan) / .65); }
+.technical-cover span:nth-child(2) { background: rgb(var(--color-emerald) / .65); }
+.technical-cover span:nth-child(3) { background: rgb(var(--color-violet) / .65); }
+
+html[lang="ar"] {
+  --font-sans: var(--font-arabic), sans-serif;
+  --font-display: var(--font-arabic), sans-serif;
+}
+html[lang="ar"] body { line-height: 1.9; }
+html[lang="ar"] :is(h1, h2, h3, h4) { line-height: 1.6; letter-spacing: 0; font-weight: 600; }
+html[lang="ar"] :is(p, li) { line-height: 1.9; }
+html[lang="ar"] .font-mono { font-family: var(--font-arabic), var(--font-plex-mono), monospace; letter-spacing: 0; }
+html[lang="ar"] [dir="ltr"].font-mono, html[lang="ar"] .font-mono [dir="ltr"] { font-family: var(--font-plex-mono), monospace; }
+html[lang="ar"] nav { letter-spacing: 0; }
+.arabic-glyph { font-family: var(--font-arabic), sans-serif; font-size: 1.2rem; }
+@media (prefers-reduced-motion: reduce), (pointer: coarse) { .cursor-glow { display: none; } }
+@media (prefers-reduced-motion: reduce) { .glow-card { background-image: none; } }

@@ -1,26 +1,14 @@
-import type { SystemStatus } from "@/lib/content";
+"use client";
+
+import { usePortfolio } from "./LanguageProvider";
 import { StatusIndicator } from "./StatusIndicator";
 
-export function Footer({
-  copyright = "Sadeem AlBoqami",
-  status = { label: "SYSTEM STATUS", value: "ONLINE", detail: "ALL NODES ACTIVE" },
-}: {
-  copyright?: string;
-  status?: SystemStatus;
-}) {
-  const safeStatus = status || { label: "SYSTEM STATUS", value: "ONLINE", detail: "ALL NODES ACTIVE" };
-
-  return (
-    <footer className="border-t border-cyan/15 px-6 py-8">
-      <div className="mx-auto flex max-w-content flex-col items-start justify-between gap-3 font-mono text-xs text-muted sm:flex-row sm:items-center">
-        <p>© {new Date().getFullYear()} {copyright}</p>
-        <StatusIndicator
-          label={safeStatus.label}
-          value={safeStatus.value}
-          detail={safeStatus.detail}
-          tone="emerald"
-        />
-      </div>
-    </footer>
-  );
+export function Footer() {
+  const { content } = usePortfolio();
+  return <footer className="border-t border-cyan/15 px-4 py-7 sm:px-6">
+    <div className="mx-auto flex max-w-content flex-col justify-between gap-4 text-xs text-muted sm:flex-row sm:items-center">
+      <p>© {new Date().getFullYear()} {content.footer.copyright}</p>
+      <StatusIndicator value={content.footer.status} tone="emerald" />
+    </div>
+  </footer>;
 }

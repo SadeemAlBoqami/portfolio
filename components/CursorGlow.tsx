@@ -1,28 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function CursorGlow() {
-  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
-  const [mounted, setMounted] = useState(false);
-
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    setMounted(true);
-    const updateMouse = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const query = window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const move = (event: PointerEvent) => {
+      if (!query.matches || !ref.current) return;
+      ref.current.style.setProperty("--cursor-x", `${event.clientX}px`);
+      ref.current.style.setProperty("--cursor-y", `${event.clientY}px`);
     };
-    window.addEventListener("mousemove", updateMouse);
-    return () => window.removeEventListener("mousemove", updateMouse);
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
   }, []);
-
-  if (!mounted) return null;
-
-  return (
-    <div
-      className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
-      style={{
-        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 240, 255, 0.12), transparent 75%)`,
-      }}
-    />
-  );
+  return <div ref={ref} aria-hidden="true" className="cursor-glow pointer-events-none fixed inset-0 z-10" />;
 }

@@ -1,98 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
-import type { HeroContent } from "@/lib/content";
-import { tapPress } from "@/lib/motion";
+import { usePortfolio } from "./LanguageProvider";
+import { assetPath } from "@/lib/assets";
 import { Badge } from "./Badge";
 import { CyberButton } from "./CyberButton";
+import { StatusIndicator } from "./StatusIndicator";
 
-export function Hero({ hero }: { hero: HeroContent }) {
+const tones = ["cyan", "emerald", "violet"] as const;
+
+export function Hero() {
+  const { content: { hero, contact, ui } } = usePortfolio();
+  const reducedMotion = useReducedMotion();
   return (
-    <section
-      id="top"
-      className="relative flex flex-col justify-center border-b border-cyan/15 px-6 pt-12 pb-14"
-    >
+    <section id="top" className="relative border-b border-cyan/15 px-4 py-14 sm:px-6 sm:py-20">
       <div className="mx-auto w-full max-w-content">
-        {/* Status indicator badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-emerald/30 bg-emerald/10 px-3.5 py-1.5 text-xs font-mono tracking-wider text-emerald"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald" />
-          </span>
-          AVAILABLE FOR FULL-TIME ROLES & COLLABORATIONS
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-muted">{hero.location}</p>
-
-          <h1 className="text-glow-cyan font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-heading sm:text-6xl md:text-7xl">
-            {hero.name}
-          </h1>
-
-          <p className="mt-3 font-display text-xl font-semibold text-cyan sm:text-2xl">{hero.title}</p>
-
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-body sm:text-lg">
-            {hero.tagline}
-          </p>
-
-          <ul className="mt-6 flex flex-wrap gap-2.5">
-            {hero.badges.map((badge, i) => (
-              <li key={badge}>
-                <Badge tone={["cyan", "emerald", "violet"][i % 3] as "cyan" | "emerald" | "violet"}>
-                  {badge}
-                </Badge>
-              </li>
-            ))}
+        <div className="mb-7 inline-flex max-w-full rounded-full border border-emerald/25 bg-emerald/5 px-4 py-2">
+          <StatusIndicator value={hero.availability} tone="emerald" />
+        </div>
+        <motion.div initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <p className="mb-3 text-sm text-muted">{hero.location}</p>
+          <h1 className="hero-name font-display text-5xl font-semibold leading-[1.1] tracking-tight text-heading sm:text-6xl lg:text-7xl">{hero.name}</h1>
+          <p className="mt-5 max-w-4xl font-display text-xl font-medium leading-relaxed text-cyan sm:text-2xl">{hero.title}</p>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-body sm:text-lg">{hero.tagline}</p>
+          <ul className="mt-7 flex flex-wrap gap-2">
+            {hero.badges.map((badge, index) => <li key={badge}><Badge tone={tones[index % tones.length]}><bdi>{badge}</bdi></Badge></li>)}
           </ul>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <CyberButton href="#projects" variant="primary">
-              VIEW PROJECTS
-            </CyberButton>
-            <CyberButton href={hero.resumeUrl} variant="ghost">
-              DOWNLOAD CV
-            </CyberButton>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pl-2">
-              <motion.a
-                href={hero.social.github}
-                target="_blank"
-                rel="noreferrer"
-                whileTap={tapPress}
-                aria-label="GitHub"
-                className="rounded-md border border-cyan/20 bg-background-alt p-2.5 text-muted transition-colors duration-200 hover:border-cyan hover:text-cyan"
-              >
-                <Github size={18} />
-              </motion.a>
-              <motion.a
-                href={hero.social.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                whileTap={tapPress}
-                aria-label="LinkedIn"
-                className="rounded-md border border-cyan/20 bg-background-alt p-2.5 text-muted transition-colors duration-200 hover:border-cyan hover:text-cyan"
-              >
-                <Linkedin size={18} />
-              </motion.a>
-              <motion.a
-                href={hero.social.email}
-                whileTap={tapPress}
-                aria-label="Email"
-                className="rounded-md border border-cyan/20 bg-background-alt p-2.5 text-muted transition-colors duration-200 hover:border-cyan hover:text-cyan"
-              >
-                <Mail size={18} />
-              </motion.a>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <CyberButton href="#projects" variant="primary">{ui.viewProjects}</CyberButton>
+            <CyberButton href={assetPath(hero.resumeUrl)}>{ui.downloadCV}</CyberButton>
+            <div className="flex items-center gap-2 sm:ms-2">
+              <a href={contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="control-button"><Github size={18} /></a>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className="control-button"><Linkedin size={18} /></a>
+              <a href={`mailto:${contact.email}`} aria-label={ui.email} title={ui.email} className="control-button"><Mail size={18} /></a>
             </div>
           </div>
         </motion.div>

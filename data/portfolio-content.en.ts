@@ -120,6 +120,6 @@ export const english: PortfolioContent = {
     planned: [{ id: "nca-aiio", title: "NVIDIA-Certified Associate: AI Infrastructure and Operations (NCA-AIIO)", issuer: "NVIDIA" }],
     courses: [{ id: "ibm", title: "AI Skills Accelerator", issuer: "IBM & King Saud University", date: "Jan 2026 — Mar 2026" }, { id: "jetson", title: "Getting Started with AI on Jetson Nano", issuer: "NVIDIA Deep Learning Institute", date: "Apr 2026" }, { id: "aws-path", title: "AWS Certified AI Practitioner Learning Path", issuer: "Saudi Digital Academy", date: "Sep 2026" }],
   },
-  contact: { email: "salmrzoqe@gmail.com", phoneDisplay: "+966 55 539 7395", phoneCanonical: "+966555397395", github: "https://github.com/SadeemAlBoqami", linkedin: "https://linkedin.com/in/sadeem-alboqami", location: "Taif, Saudi Arabia" },
+  contact: { email: "salmrzoqe@gmail.com", phoneDisplay: "", phoneCanonical: "", github: "https://github.com/SadeemAlBoqami", linkedin: "https://linkedin.com/in/sadeem-alboqami", location: "Taif, Saudi Arabia" },
   footer: { copyright: "Sadeem AlBoqami", status: "Available for opportunities" },
 };

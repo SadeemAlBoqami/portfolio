@@ -22,13 +22,6 @@ export function Contact() {
             <CopyButton value={contact.email} label={ui.copyEmail} />
           </div>
         </div>
-        <div className="panel p-5">
-          <p className="mb-3 text-xs text-muted">{ui.phone}</p>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <a dir="ltr" className="font-mono text-sm text-heading hover:text-cyan sm:text-base" href={`tel:${contact.phoneCanonical}`}>{contact.phoneDisplay}</a>
-            <CopyButton value={contact.phoneCanonical} label={ui.copyPhone} />
-          </div>
-        </div>
         <div className="grid grid-cols-2 gap-4">
           <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="panel flex items-center gap-2 p-4 text-sm text-heading transition-colors hover:border-cyan/60"><Linkedin size={17} aria-hidden="true" /><span>LinkedIn</span><ArrowUpRight size={15} className="ms-auto" aria-hidden="true" /></a>
           <a href={contact.github} target="_blank" rel="noopener noreferrer" className="panel flex items-center gap-2 p-4 text-sm text-heading transition-colors hover:border-cyan/60"><Github size={17} aria-hidden="true" /><span>GitHub</span><ArrowUpRight size={15} className="ms-auto" aria-hidden="true" /></a>

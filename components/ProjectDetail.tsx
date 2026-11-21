@@ -24,7 +24,7 @@ export function ProjectDetail({ slug }: { slug: ProjectSlug }) {
     <header>
       <div className="mb-5 flex flex-wrap items-center gap-3 text-sm">
         <Badge tone="emerald">{ui.status[project.status]}</Badge>
-        {project.period && <span className="text-muted">{project.period}</span>}
+        {project.period && <time className="date-pill">{project.period}</time>}
         {project.secondaryName && <bdi className="text-violet">{project.secondaryName}</bdi>}
       </div>
       <h1 className="max-w-4xl font-display text-3xl font-semibold leading-tight tracking-tight text-heading sm:text-5xl">{project.title}</h1>

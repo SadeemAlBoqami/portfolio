@@ -6,8 +6,8 @@ export const arabic: PortfolioContent = {
   ...english,
   site: { title: "سديم البقمي — مهندسة حاسب | البنية التحتية للذكاء الاصطناعي", description: "الملف المهني لسديم البقمي، مهندسة حاسب تعمل في البنية التحتية للذكاء الاصطناعي، واستدلال GPU، والذكاء الاصطناعي الطرفي، والروبوتات." },
   hero: {
-    ...english.hero, name: "سديم البقمي", title: "مهندسة حاسب | البنية التحتية للذكاء الاصطناعي | الذكاء الاصطناعي الطرفي",
-    tagline: "أبني وأقيّم أنظمة ذكية تجمع بين بنية GPU التحتية، والذكاء الاصطناعي الطرفي، والروبوتات، ونشر النماذج للتطبيقات العملية.",
+    ...english.hero, name: "سديم فيحان البقمي", title: "مهندسة حاسب | مهندسة ذكاء اصطناعي | البنية التحتية للذكاء الاصطناعي | مهندسة ذكاء اصطناعي ميدانية (FDE) | الذكاء الاصطناعي الطرفي",
+    tagline: "أبني وأقيّم أنظمة ذكية في البنية التحتية والأنظمة الطرفية والروبوتات، مع اهتمام مهني ناشئ بهندسة الذكاء الاصطناعي الميدانية (AI Forward Deployed Engineering — AI FDE).",
     location: "الطائف، المملكة العربية السعودية", availability: "متاحة للفرص المهنية والتعاون",
   },
   navigation: [
@@ -22,20 +22,22 @@ export const arabic: PortfolioContent = {
     overview: "نبذة عن المشروع", built: "ما أنجزته", architecture: "المعمارية والبنية التحتية", results: "النتائج والقياسات", media: "وسائط المشروع", links: "روابط المشروع",
     status: { completed: "مكتمل", "in-preparation": "قيد التحضير" },
     menu: "فتح قائمة التنقل", closeMenu: "إغلاق قائمة التنقل", lightTheme: "تفعيل المظهر الفاتح", darkTheme: "تفعيل المظهر الداكن", skip: "الانتقال إلى المحتوى", switchLanguage: "View site in English",
-    professionalCertifications: "شهادات مهنية قيد التحضير", training: "برامج تدريبية واعتمادات مختارة", trainingLabel: "برنامج تدريبي",
+    professionalCertifications: "الشهادات الاحترافية المكتسبة", plannedCertifications: "شهادة مخطط لها", plannedLabel: "مخطط لها", training: "الدورات المكتملة", trainingLabel: "دورة",
     preparationNote: "يجري التحضير لهذه الشهادات، ولم تُكتسب بعد.", gpa: "المعدل التراكمي",
     copy: "نسخ", copied: "تم النسخ", copyFailed: "تعذّر النسخ. يُرجى تحديد النص ونسخه يدويًا.",
     copyEmail: "نسخ البريد الإلكتروني", copyPhone: "نسخ رقم الهاتف", email: "البريد الإلكتروني", phone: "الهاتف", location: "الموقع",
     contactHeading: "لنبنِ أنظمة ذكية معًا.", contactDescription: "متاحة للفرص الهندسية والتعاون في البنية التحتية للذكاء الاصطناعي، والأنظمة الطرفية، والروبوتات.",
   },
   focusAreas: [
+    { id: "ai-fde", title: "هندسة الذكاء الاصطناعي الميدانية (AI FDE)", description: "اهتمام مهني ناشئ بتطبيق الذكاء الاصطناعي ودمج النماذج وتحويل المتطلبات العملية إلى حلول قابلة للنشر ضمن البنية التحتية والأنظمة الطرفية." },
     { id: "infrastructure", title: "البنية التحتية للذكاء الاصطناعي وMLOps", description: "تشغيل النماذج على GPU، ونشر أحمال العمل بالحاويات، وإدارتها عبر Kubernetes ضمن بيئات قابلة لإعادة الإنتاج." },
     { id: "edge", title: "الذكاء الاصطناعي الطرفي والرؤية الحاسوبية", description: "استدلال بزمن استجابة منخفض على NVIDIA Jetson باستخدام TensorRT وPyTorch وOpenCV وYOLOv8." },
     { id: "robotics", title: "الروبوتات والأنظمة المدمجة", description: "دمج ROS 2 والمتحكمات الدقيقة والمستشعرات لبناء أنظمة ذكية تتكامل فيها البرمجيات مع العتاد." },
     { id: "gpu", title: "أنظمة GPU ومراقبة الأداء", description: "تقييم زمن الاستجابة ومعدل المعالجة واستهلاك VRAM، ومراقبة البنية التحتية باستخدام Prometheus وGrafana." },
   ],
   experience: [
-    { ...english.experience[0], role: "معسكر تشغيل مراكز بيانات الذكاء الاصطناعي", organization: "الأكاديمية السعودية الرقمية (SDA) وWeCloudData", period: "أغسطس 2026 — أكتوبر 2026",
+    { id: "al-hada-gdp", role: "مهندسة حاسب – برنامج تطوير الخريجين", organization: "مستشفى القوات المسلحة بالهدا – إدارة الموارد البشرية، قسم التخطيط والتطوير", period: "نوفمبر 2026 — حتى الآن", highlights: [], skills: [] },
+    { ...english.experience[0], role: "متدربة تشغيل مراكز بيانات الذكاء الاصطناعي", organization: "الأكاديمية السعودية الرقمية (SDA) وWeCloudData", period: "أغسطس 2026 — أكتوبر 2026",
       highlights: ["نشرت أحمال استدلال للذكاء الاصطناعي بالحاويات باستخدام Docker وKubernetes/k3s وvLLM-Omni.", "قيّمت أداء الاستدلال على GPU من حيث زمن الاستجابة والموثوقية واستهلاك VRAM.", "طبّقت مراقبة البنية التحتية باستخدام Prometheus وGrafana."] },
     { ...english.experience[1], role: "متدربة هندسة روبوتات متكاملة", organization: "Smart Methods — الأساليب الذكية", period: "يونيو 2025 — أغسطس 2025",
       highlights: ["دمجت متحكمات ARM وESP32 في أنظمة حركة الروبوتات والتحكم بها.", "عملت على نماذج للرؤية الحاسوبية ومعالجة اللغة الطبيعية في الزمن الفعلي للأنظمة المدمجة والمستقلة.", "استخدمت ROS 2 في تكامل العتاد والبرمجيات."], skills: ["ROS 2", "ARM", "ESP32", "الرؤية الحاسوبية", "معالجة اللغة الطبيعية"] },
@@ -107,11 +109,16 @@ export const arabic: PortfolioContent = {
     { title: "العتاد والمنصات", items: ["NVIDIA GPUs", "NVIDIA Jetson Orin Nano", "ESP32", "متحكمات ARM"] },
   ],
   credentials: {
-    preparation: english.credentials.preparation,
-    training: [
-      { ...english.credentials.training[0], title: "برنامج تسريع مهارات الذكاء الاصطناعي", issuer: "IBM وجامعة الملك سعود" },
-      { ...english.credentials.training[1], title: "البدء بالذكاء الاصطناعي على Jetson Nano", issuer: "NVIDIA Deep Learning Institute" },
-      { ...english.credentials.training[2], title: "المسار التعليمي لشهادة AWS Certified AI Practitioner", issuer: "الأكاديمية السعودية الرقمية" },
+    professional: [
+      { id: "full-stack-robotics", title: "مهندسة روبوتات متكاملة", issuer: "Smart Methods" },
+      { id: "mecai-ieee", title: "MECAI Full Stack Robotics Engineer", issuer: "IEEE" },
+      { id: "aws-ai", title: "AWS Certified AI Practitioner", issuer: "Amazon Web Services" },
+    ],
+    planned: english.credentials.planned,
+    courses: [
+      { ...english.credentials.courses[0], title: "برنامج تسريع مهارات الذكاء الاصطناعي", issuer: "IBM وجامعة الملك سعود", date: "يناير 2026 — مارس 2026" },
+      { ...english.credentials.courses[1], title: "البدء بالذكاء الاصطناعي على Jetson Nano", issuer: "NVIDIA Deep Learning Institute", date: "أبريل 2026" },
+      { ...english.credentials.courses[2], title: "المسار التعليمي لشهادة AWS Certified AI Practitioner", issuer: "الأكاديمية السعودية الرقمية", date: "سبتمبر 2026" },
     ],
   },
   contact: { ...english.contact, location: "الطائف، المملكة العربية السعودية" },

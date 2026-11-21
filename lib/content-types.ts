@@ -47,6 +47,7 @@ export interface PortfolioContent {
     status: Record<ProjectStatus, string>;
     menu: string; closeMenu: string; lightTheme: string; darkTheme: string; skip: string; switchLanguage: string;
     professionalCertifications: string; training: string; trainingLabel: string; preparationNote: string; gpa: string;
+    plannedCertifications: string; plannedLabel: string;
     copy: string; copied: string; copyFailed: string; copyEmail: string; copyPhone: string;
     email: string; phone: string; location: string; contactHeading: string; contactDescription: string;
   };
@@ -55,7 +56,7 @@ export interface PortfolioContent {
   education: { degree: string; institution: string; period: string; gpa: string; distinction: string };
   projects: Record<ProjectSlug, Project>;
   skills: SkillsContent;
-  credentials: { preparation: Credential[]; training: Credential[] };
+  credentials: { professional: Credential[]; planned: Credential[]; courses: Credential[] };
   contact: { email: string; phoneDisplay: string; phoneCanonical: string; github: string; linkedin: string; location: string };
   footer: { copyright: string; status: string };
 }

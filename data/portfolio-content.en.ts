@@ -2,12 +2,12 @@ import type { PortfolioContent } from "@/lib/content-types";
 
 export const english: PortfolioContent = {
   site: {
-    title: "Sadeem AlBoqami — Computer Engineer | AI Infrastructure & Edge AI",
+    title: "Sadeem Faihan AlBoqami — Computer Engineer | AI Infrastructure & AI FDE",
     description: "Portfolio of Sadeem AlBoqami, a Computer Engineer working across AI infrastructure, GPU inference, Edge AI, robotics, and intelligent systems.",
   },
   hero: {
-    name: "Sadeem AlBoqami", title: "Computer Engineer | AI Infrastructure | Edge AI",
-    tagline: "Building and evaluating intelligent systems across GPU infrastructure, edge AI, robotics, and production-oriented AI deployment.",
+    name: "Sadeem Faihan AlBoqami", title: "Computer Engineer | AI Engineer | AI Infrastructure | Forward Deployed Engineer (FDE) | Edge AI",
+    tagline: "Building and evaluating intelligent systems across AI infrastructure, edge deployment, embedded systems, and robotics, with a growing interest in AI Forward Deployed Engineering.",
     location: "Taif, Saudi Arabia", availability: "AVAILABLE FOR OPPORTUNITIES & COLLABORATIONS", resumeUrl: "/cv/cv.pdf",
     badges: ["NVIDIA GPUs", "Kubernetes", "Docker", "vLLM", "TensorRT", "ROS 2"],
   },
@@ -23,20 +23,22 @@ export const english: PortfolioContent = {
     overview: "Overview", built: "What I Built", architecture: "Architecture & Infrastructure", results: "Results & Metrics", media: "Project Media", links: "Project Links",
     status: { completed: "Completed", "in-preparation": "In Preparation" },
     menu: "Open navigation", closeMenu: "Close navigation", lightTheme: "Switch to light mode", darkTheme: "Switch to dark mode", skip: "Skip to content", switchLanguage: "عرض الموقع بالعربية",
-    professionalCertifications: "Professional certifications — in preparation", training: "Selected training & credentials", trainingLabel: "Training",
+    professionalCertifications: "Professional Certifications", plannedCertifications: "Planned Certification", plannedLabel: "Planned", training: "Completed Courses", trainingLabel: "Course",
     preparationNote: "Preparation in progress; these certifications have not been earned.", gpa: "GPA",
     copy: "Copy", copied: "Copied", copyFailed: "Could not copy. Please select and copy the text manually.",
     copyEmail: "Copy email address", copyPhone: "Copy phone number", email: "Email", phone: "Phone", location: "Location",
     contactHeading: "Let’s build intelligent systems.", contactDescription: "Available for engineering opportunities and collaboration across AI infrastructure, edge AI, and robotics.",
   },
   focusAreas: [
+    { id: "ai-fde", title: "AI Forward Deployed Engineering", description: "Emerging professional interest in applying AI, integrating models, and translating practical requirements into deployable solutions across infrastructure and edge environments." },
     { id: "infrastructure", title: "AI Infrastructure & MLOps", description: "GPU-backed model serving, containerized workloads, Kubernetes orchestration, and reproducible deployment." },
     { id: "edge", title: "Edge AI & Computer Vision", description: "Low-latency perception on NVIDIA Jetson with TensorRT, PyTorch, OpenCV, and YOLOv8." },
     { id: "robotics", title: "Robotics & Embedded Systems", description: "ROS 2, microcontrollers, sensing, and embedded intelligence through hardware/software integration." },
     { id: "gpu", title: "GPU Systems & Observability", description: "Evaluating latency, throughput, and VRAM utilization with infrastructure monitoring in Prometheus and Grafana." },
   ],
   experience: [
-    { id: "sda", role: "AI Data Center Operations Bootcamp", organization: "Saudi Digital Academy (SDA) & WeCloudData", period: "Aug 2026 — Oct 2026",
+    { id: "al-hada-gdp", role: "GDP Trainee – Computer Engineer", organization: "Armed Forces Hospital at Al Hada – Human Resources, Planning & Development Department", period: "Nov 2026 — Present", highlights: [], skills: [] },
+    { id: "sda", role: "AI Data Center Operations Trainee", organization: "Saudi Digital Academy (SDA) & WeCloudData", period: "Aug 2026 — Oct 2026",
       highlights: ["Deployed containerized AI inference workloads using Docker, Kubernetes/k3s, and vLLM-Omni.", "Benchmarked GPU inference latency, reliability, and VRAM utilization.", "Implemented infrastructure observability using Prometheus and Grafana."],
       skills: ["Docker", "Kubernetes / k3s", "vLLM-Omni", "Prometheus", "Grafana"] },
     { id: "smart-methods", role: "Full Stack Robotics Engineer Intern", organization: "Smart Methods", period: "Jun 2025 — Aug 2025",
@@ -114,8 +116,9 @@ export const english: PortfolioContent = {
     { title: "Hardware & Platforms", items: ["NVIDIA GPUs", "NVIDIA Jetson Orin Nano", "ESP32", "ARM Microcontrollers"] },
   ],
   credentials: {
-    preparation: [{ id: "aws-ai", title: "AWS Certified AI Practitioner", issuer: "Amazon Web Services" }, { id: "nca-aiio", title: "NVIDIA-Certified Associate: AI Infrastructure and Operations (NCA-AIIO)", issuer: "NVIDIA" }],
-    training: [{ id: "ibm", title: "AI Skills Accelerator", issuer: "IBM & King Saud University", date: "2026" }, { id: "jetson", title: "Getting Started with AI on Jetson Nano", issuer: "NVIDIA Deep Learning Institute", date: "2026" }, { id: "aws-path", title: "AWS Certified AI Practitioner Learning Path", issuer: "Saudi Digital Academy" }],
+    professional: [{ id: "aws-ai", title: "AWS Certified AI Practitioner", issuer: "Amazon Web Services", date: "Oct 2026" }, { id: "mecai-ieee", title: "MECAI Full Stack Robotics Engineer", issuer: "IEEE", date: "Aug 2025" }],
+    planned: [{ id: "nca-aiio", title: "NVIDIA-Certified Associate: AI Infrastructure and Operations (NCA-AIIO)", issuer: "NVIDIA" }],
+    courses: [{ id: "ibm", title: "AI Skills Accelerator", issuer: "IBM & King Saud University", date: "Jan 2026 — Mar 2026" }, { id: "jetson", title: "Getting Started with AI on Jetson Nano", issuer: "NVIDIA Deep Learning Institute", date: "Apr 2026" }, { id: "aws-path", title: "AWS Certified AI Practitioner Learning Path", issuer: "Saudi Digital Academy", date: "Sep 2026" }],
   },
   contact: { email: "salmrzoqe@gmail.com", phoneDisplay: "+966 55 539 7395", phoneCanonical: "+966555397395", github: "https://github.com/SadeemAlBoqami", linkedin: "https://linkedin.com/in/sadeem-alboqami", location: "Taif, Saudi Arabia" },
   footer: { copyright: "Sadeem AlBoqami", status: "Available for opportunities" },

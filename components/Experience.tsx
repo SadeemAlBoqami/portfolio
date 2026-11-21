@@ -10,7 +10,7 @@ export function Experience({ items, title }: { items: ExperienceItem[]; title: s
         <span aria-hidden="true" className="absolute -start-1.5 top-2 h-3 w-3 rounded-full border border-cyan bg-background" />
         <div className="flex flex-col justify-between gap-3 lg:flex-row lg:items-baseline">
           <h3 className="font-display text-xl font-semibold text-heading sm:text-2xl">{item.role}</h3>
-          <p className="shrink-0 text-sm text-muted">{item.period}</p>
+          <time className="date-pill shrink-0">{item.period}</time>
         </div>
         <p className="mt-2 text-sm font-medium text-cyan">{item.organization}</p>
         <ul className="mt-4 max-w-3xl list-disc space-y-2 ps-5 text-sm leading-relaxed marker:text-cyan/60">

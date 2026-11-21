@@ -11,7 +11,7 @@ export function Education({ content }: { content: PortfolioContent }) {
           <div>
             <h2 id="education-heading" className="mb-2 text-sm font-medium text-violet">{sections.education}</h2>
             <h3 className="font-display text-xl font-semibold text-heading">{education.degree}</h3>
-            <p className="mt-1 text-sm">{education.institution} · {education.period}</p>
+            <p className="mt-1 text-sm">{education.institution} · <time className="date-pill">{education.period}</time></p>
             <p className="mt-3 text-sm text-muted">{education.distinction}</p>
           </div>
         </div>

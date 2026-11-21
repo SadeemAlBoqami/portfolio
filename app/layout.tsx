@@ -6,7 +6,6 @@ import { Navbar } from "@/components/Navbar";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { CursorGlow } from "@/components/CursorGlow";
-import { siteMeta } from "@/lib/content";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
